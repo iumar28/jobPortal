@@ -36,21 +36,20 @@ router.get('/alljobs', async (req, res) => {
     res.send(jobs);
 });
 
-app.get('/job/:id', async (req, res) => {
-    // Get the details of a specific job posting
+router.get('/job/:id', async (req, res) => {
 
-    const job = await job.JobPosting.findById(ObjectId("63c1c489ee2f192ef09304da"));  
-    if (!job) {
+    let jobs = job.JobPosting.findOne({_id:req.params.id});  
+    if (!jobs) {
         res.status(404).send();
     } else {
-        res.send(job);
+        res.send(jobs);
     }
 });
 
-app.post('/job/:id/apply', async (req, res) => {
+router.post('/job/:id/apply', async (req, res) => {
     // Apply for a job posting
-    const job = await job.JobPosting.findById(req.params.id);
-    if (!job) {
+    const jobs = await job.JobPosting.findById(req.params.id);
+    if (!jobs) {
         res.status(404).send();
     } else {
         const application = new job.JobApplication({
