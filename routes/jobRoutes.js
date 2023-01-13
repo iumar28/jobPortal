@@ -38,7 +38,7 @@ router.get('/alljobs', async (req, res) => {
 
 router.get('/job/:id', async (req, res) => {
 
-    let jobs = job.JobPosting.findOne({_id:req.params.id});  
+    let jobs = await job.JobPosting.findById({_id:req.params.id});  
     if (!jobs) {
         res.status(404).send();
     } else {
@@ -48,7 +48,7 @@ router.get('/job/:id', async (req, res) => {
 
 router.post('/job/:id/apply', async (req, res) => {
     // Apply for a job posting
-    const jobs = await job.JobPosting.findById(req.params.id);
+    const jobs = await job.JobPosting.findById({_id:req.params.id});
     if (!jobs) {
         res.status(404).send();
     } else {
@@ -59,6 +59,7 @@ router.post('/job/:id/apply', async (req, res) => {
             resume: req.body.resume,
             cover: req.body.cover,
         })
+        res.send(application);
     }
 })
 
