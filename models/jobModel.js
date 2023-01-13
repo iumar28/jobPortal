@@ -13,11 +13,10 @@ const jobApplicationSchema = new mongoose.Schema({
     jobId: { type: mongoose.Types.ObjectId, required: true },
     name: { type: String, required: true },
     email: { type: String, required: true },
-    // resume: { type: Buffer },
+//     resume: { type: Buffer },
+    resume: {type: String, required: true},
     coverLetter: { type: String }
 });
-// module.exports = mongoose.model('JobPosting',jobPostingSchema);
-// module.exports = mongoose.model('JobApplication',jobApplicationSchema);
 const JobPosting = mongoose.model('JobPosting',jobPostingSchema);
 const JobApplication = mongoose.model('JobApplication',jobApplicationSchema);
 
