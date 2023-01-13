@@ -53,10 +53,10 @@ router.post('/job/:id/apply', async (req, res) => {
         res.status(404).send();
     } else {
         const application = new job.JobApplication({
-            // jobId: job._id,
+            jobId: job._id,
             name: req.body.name,
             email: req.body.email,
-            // resume: req.body.resume,
+            resume: req.body.resume,
             cover: req.body.cover,
         })
     }
