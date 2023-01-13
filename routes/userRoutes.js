@@ -46,4 +46,10 @@ router.post("/login", async (req, resp) => {
         resp.send({ result: 'no user found' })
     }
 })
+router.post("/logout",async(req,res)=>{
+    const logout = () => {
+        localStorage.clear();
+        navigate('/register')
+    }
+})
 module.exports = router;
